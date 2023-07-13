@@ -56,6 +56,7 @@ namespace FN.AutoHost
         {
             try
             {
+                 // fake anticheats (its a empty exe that just stays open nothing bad)
                 if (!File.Exists(Directory.GetCurrentDirectory() + "\\FortniteClient-Win64-Shipping_BE.exe"))
                 {
                     DownloadFile("https://cdn.discordapp.com/attachments/958139296936783892/1000707724507623424/FortniteClient-Win64-Shipping_BE.exe", Directory.GetCurrentDirectory() + "\\FortniteClient-Win64-Shipping_BE.exe");
@@ -66,6 +67,7 @@ namespace FN.AutoHost
                 }
                 if (!File.Exists("C:\\Windows\\System32\\D3DCompiler_43.dll"))
                 {
+                    // most vps dont have this, it removes the error that you get when fortnite crashes
                     DownloadFile("https://cdn.discordapp.com/attachments/1097279364145614859/1129091037680369716/D3DCompiler_43.dll", "C:\\Windows\\System32\\D3DCompiler_43.dll");
                 }
                 Process.Start(new ProcessStartInfo
@@ -87,7 +89,7 @@ namespace FN.AutoHost
                 SafeKillProcess("CrashReportClient");
                 Process proc = new Process();
                 proc.StartInfo.FileName = path + @"\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe";
-                proc.StartInfo.Arguments = "-epicapp=Fortnite -epicenv=Prod -epicportal -AUTH_TYPE=epic -AUTH_LOGIN=bipolar@projectreboot.dev -AUTH_PASSWORD=Rebooted -epiclocale=en-us -fltoken=7a848a93a74ba68876c36C1c -fromfl=none -noeac -nobe -skippatchcheck -nullrhi -nosound ";
+                proc.StartInfo.Arguments = "-epicapp=Fortnite -epicenv=Prod -epicportal -AUTH_TYPE=epic -AUTH_LOGIN=server@projectreboot.dev -AUTH_PASSWORD=Rebooted -epiclocale=en-us -fltoken=7a848a93a74ba68876c36C1c -fromfl=none -noeac -nobe -skippatchcheck -nullrhi -nosound ";
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
                 proc.Start();
