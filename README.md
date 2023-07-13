@@ -12,6 +12,9 @@
  3. Put your gameserver in the folder of FN.AutoHost.exe (make sure its named ``Gameserver.dll``)
  4. Open FN.AutoHost.exe and follow the instructions!
 
+ ## Common issues
+ - When using reboot v3 i get a "Network Connection Lost" error. how do i fix this?
+   - Make a new account in your LawinV2 backend with the email ```server@projectreboot.dev``` and Password ```Rebooted```, you can change this in Fortnite.cs at line 96
  ## FAQ 
  - How do i change the saved path?
    - Open Change Path.bat
