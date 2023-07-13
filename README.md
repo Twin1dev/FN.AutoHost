@@ -21,3 +21,5 @@
    - Open Change Path.bat
  - My autohost crashed?
    - Make sure you have .net framework 4.8 installed and that everything is correct (path, gameserver, redirect)
+ - My game isnt closing after ive won?
+   - Right now i am not providing support for the gameserver side of autohosting. you will need someone or yourself to add that.
