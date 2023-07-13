@@ -89,6 +89,8 @@ namespace FN.AutoHost
             CTRL_SHUTDOWN_EVENT = 6
         }
 
+
+
         [DllImport("wininet.dll")]
         public static extern bool InternetSetOption(IntPtr hInternet, InternetOptions dwOption, IntPtr lpBuffer, uint dwBufferLength);
 

@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static FN.AutoHost.Win32;
 
 namespace FN.AutoHost
 {
     internal class Program
     {
+        private delegate bool EventHandler(CtrlType sig);
+        static SetConsoleCtrlEventHandler _handler;
         static void Main(string[] args)
         {
             if (args.Length != 0) {
@@ -75,5 +78,9 @@ namespace FN.AutoHost
             }
             Fortnite.Launch(Settings.Default.path);
         }
+  
     }
+
+  
+
 }

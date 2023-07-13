@@ -7,12 +7,16 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+
 using System.Threading.Tasks;
 
 namespace FN.AutoHost
 {
+
     internal class Fortnite
     {
+        [DllImport("User32.dll", CharSet = CharSet.Unicode)]
+        public static extern int MessageBox(IntPtr h, string m, string c, int type);
         public static void SafeKillProcess(string processName)
         {
             try
@@ -32,7 +36,7 @@ namespace FN.AutoHost
         {
             new WebClient().DownloadFile(URL, path);
         }
-
+        public static bool bGameserver = false;
         public static void Inject(int pid, string path)
         {
             if (!File.Exists(path))
@@ -102,11 +106,12 @@ namespace FN.AutoHost
                         string output = proc.StandardOutput.ReadLine();
                         if (output != null)
                         {
-                            if (output.Contains("Region "))
+                            if (output.Contains("Game Engine Initialized"))
                             {
+
                                 Thread.Sleep(5000);
                                 Inject(proc.Id, Directory.GetCurrentDirectory() + "\\Gameserver.dll");
-
+                                bGameserver = true;
 
                             }
 
@@ -116,10 +121,21 @@ namespace FN.AutoHost
                         else
                         {
                             var fortnite = Process.GetProcessesByName("FortniteClient-Win64-Shipping");
-                            if (fortnite.Length == 0)
+                            if (fortnite.Length == 0 && bGameserver)
                             {
                                 Console.WriteLine("Restarting Server");
                                 goto start;
+                            }
+                            // Meaning Cobalt is on the wrong setting
+                            if (!bGameserver)
+                            {
+                                SafeKillProcess("FortniteClient-Win64-Shipping_BE");
+                                SafeKillProcess("FortniteLauncher");
+                                SafeKillProcess("FortniteClient-Win64-Shipping");
+                                SafeKillProcess("CrashReportClient");
+
+                                MessageBox((IntPtr)0, "It seems you have the incorrect setting on your cobalt dll! Make sure that you removed the '#define SHOW_WINDOWS_CONSOLE' line in Settings.h!", "Error", 0);
+                                Environment.Exit(0);
                             }
 
                         }
