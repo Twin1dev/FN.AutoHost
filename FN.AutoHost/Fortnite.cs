@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IniParser.Model;
+using IniParser;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,7 +9,6 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-
 using System.Threading.Tasks;
 
 namespace FN.AutoHost
@@ -60,7 +61,11 @@ namespace FN.AutoHost
         {
             try
             {
-                 // fake anticheats (its a empty exe that just stays open nothing bad)
+                var Parser = new FileIniDataParser();
+                IniData data = Parser.ReadFile(Directory.GetCurrentDirectory() + "\\Settings.ini");
+               
+
+                // fake anticheats (its a empty exe that just stays open nothing bad)
                 if (!File.Exists(Directory.GetCurrentDirectory() + "\\FortniteClient-Win64-Shipping_BE.exe"))
                 {
                     DownloadFile("https://cdn.discordapp.com/attachments/958139296936783892/1000707724507623424/FortniteClient-Win64-Shipping_BE.exe", Directory.GetCurrentDirectory() + "\\FortniteClient-Win64-Shipping_BE.exe");
@@ -93,7 +98,7 @@ namespace FN.AutoHost
                 SafeKillProcess("CrashReportClient");
                 Process proc = new Process();
                 proc.StartInfo.FileName = path + @"\FortniteGame\Binaries\Win64\FortniteClient-Win64-Shipping.exe";
-                proc.StartInfo.Arguments = "-epicapp=Fortnite -epicenv=Prod -epicportal -AUTH_TYPE=epic -AUTH_LOGIN=server@projectreboot.dev -AUTH_PASSWORD=Rebooted -epiclocale=en-us -fltoken=7a848a93a74ba68876c36C1c -fromfl=none -noeac -nobe -skippatchcheck -nullrhi -nosound ";
+                proc.StartInfo.Arguments = $"-epicapp=Fortnite -epicenv=Prod -epicportal -AUTH_TYPE=epic -AUTH_LOGIN={data["Settings"]["Email"]} -AUTH_PASSWORD={data["Settings"]["Password"]} -epiclocale=en-us -fltoken=7a848a93a74ba68876c36C1c -fromfl=none -noeac -nobe -skippatchcheck -nullrhi -nosound ";
                 proc.StartInfo.RedirectStandardOutput = true;
                 proc.StartInfo.UseShellExecute = false;
                 proc.Start();
@@ -108,7 +113,7 @@ namespace FN.AutoHost
                         string output = proc.StandardOutput.ReadLine();
                         if (output != null)
                         {
-                            if (output.Contains("Game Engine Initialized"))
+                            if (output.Contains("Region "))
                             {
 
                                 Thread.Sleep(5000);

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using static FN.AutoHost.Win32;
+using IniParser;
+using IniParser.Model;
 
 namespace FN.AutoHost
 {
@@ -31,6 +33,16 @@ namespace FN.AutoHost
                     Settings.Default.Reset();
                     Settings.Default.Save();
                 }
+            }
+            if (!File.Exists(Directory.GetCurrentDirectory() + "\\Settings.ini"))
+            {
+                // close to fix error
+                File.Create(Directory.GetCurrentDirectory() + "\\Settings.ini").Close();
+                var Parser = new FileIniDataParser();
+                IniData data = Parser.ReadFile(Directory.GetCurrentDirectory() + "\\Settings.ini");
+                data["Settings"]["Email"] = "server@projectreboot.dev";
+                data["Settings"]["Password"] = "Rebooted";
+                Parser.WriteFile(Directory.GetCurrentDirectory() + "\\Settings.ini", data);
             }
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[+] Started FN AutoHost");
