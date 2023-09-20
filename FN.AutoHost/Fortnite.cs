@@ -74,6 +74,7 @@ namespace FN.AutoHost
                 {
                     DownloadFile("https://cdn.discordapp.com/attachments/958139296936783892/1000707724818006046/FortniteLauncher.exe", Directory.GetCurrentDirectory() + "\\FortniteLauncher.exe");
                 }
+                // commented out because dumb virus flag
                 if (!File.Exists("C:\\Windows\\System32\\D3DCompiler_43.dll"))
                 {
                     // most vps dont have this, it removes the error that you get when fortnite crashes
@@ -106,6 +107,9 @@ namespace FN.AutoHost
                 Inject(proc.Id, Directory.GetCurrentDirectory() + "\\Redirect.dll");
 
                 // Interval for Checking if FortniteClient-Win64-Shipping Closed.
+
+                string[] LoginFailureErrs = {  "port 3551 failed: Connection refused", "Unable to login to Fortnite servers", "HTTP 400 response from ", "Network failure when attempting to check platform restrictions","UOnlineAccountCommon::ForceLogout" };
+
                 try
                 {
                     for (; ; )
@@ -113,17 +117,21 @@ namespace FN.AutoHost
                         string output = proc.StandardOutput.ReadLine();
                         if (output != null)
                         {
+                            // wont inject until login because if your not gs will have a stroke
                             if (output.Contains("Region "))
                             {
 
                                 Thread.Sleep(5000);
-                                Inject(proc.Id, Directory.GetCurrentDirectory() + "\\Gameserver.dll");
+                                Inject(proc.Id, Directory.GetCurrentDirectory() + $"\\{data["Settings"]["GameServerDllName"]}");
                                 bGameserver = true;
 
                             }
 
-
-
+                            if (LoginFailureErrs.Any(err => output.Contains(err)))
+                            {
+                                Console.WriteLine($"A token error occured, restarting server, Error: {output}");
+                                goto start;
+                            }
                         }
                         else
                         {
@@ -133,8 +141,8 @@ namespace FN.AutoHost
                                 Console.WriteLine("Restarting Server");
                                 goto start;
                             }
-                            // Meaning Cobalt is on the wrong setting
-                            if (!bGameserver)
+                        /*    // Meaning Cobalt is on the wrong setting
+                            if (!bGameserver && fortnite.Length != 0)
                             {
                                 SafeKillProcess("FortniteClient-Win64-Shipping_BE");
                                 SafeKillProcess("FortniteLauncher");
@@ -143,7 +151,7 @@ namespace FN.AutoHost
 
                                 MessageBox((IntPtr)0, "It seems you have the incorrect setting on your cobalt dll! Make sure that you removed the '#define SHOW_WINDOWS_CONSOLE' line in Settings.h!", "Error", 0);
                                 Environment.Exit(0);
-                            }
+                            }*/
 
                         }
 

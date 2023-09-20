@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using static FN.AutoHost.Win32;
 using IniParser;
 using IniParser.Model;
+using System.Windows.Forms;
 
 namespace FN.AutoHost
 {
@@ -19,6 +20,8 @@ namespace FN.AutoHost
         static SetConsoleCtrlEventHandler _handler;
         static void Main(string[] args)
         {
+            // doesnt work at all for some odd reason : (
+         //   AppDomain.CurrentDomain.ProcessExit += ProcessExitHandler;
             if (args.Length != 0) {
                 if (args.Contains("-change"))
                 {
@@ -42,12 +45,15 @@ namespace FN.AutoHost
                 IniData data = Parser.ReadFile(Directory.GetCurrentDirectory() + "\\Settings.ini");
                 data["Settings"]["Email"] = "server@projectreboot.dev";
                 data["Settings"]["Password"] = "Rebooted";
+                data["Settings"]["GameServerDllName"] = "Project Reboot 3.0.dll";
                 Parser.WriteFile(Directory.GetCurrentDirectory() + "\\Settings.ini", data);
             }
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[+] Started FN AutoHost");
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("[+] Starting Fortnite");
+
+        
         
 
             if (!Settings.Default.first)
@@ -89,6 +95,18 @@ namespace FN.AutoHost
                 Settings.Default.Save();
             }
             Fortnite.Launch(Settings.Default.path);
+        }
+
+
+        static void ProcessExitHandler(object sender, EventArgs e)
+        {
+         
+            Console.WriteLine("Killing all fortnite processes...");
+            Fortnite.SafeKillProcess("FortniteClient-Win64-Shipping_BE");
+            Fortnite.SafeKillProcess("FortniteLauncher");
+            Fortnite.SafeKillProcess("FortniteClient-Win64-Shipping");
+            Fortnite.SafeKillProcess("CrashReportClient");
+            Console.WriteLine("Goodbye!");
         }
   
     }
