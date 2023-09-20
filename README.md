@@ -17,6 +17,8 @@
  ## Common issues
  - When using reboot v3 i get a "Network Connection Lost" error. how do i fix this?
    - Make a new account in your LawinV2 backend with the email ```server@projectreboot.dev``` and Password ```Rebooted```, you can change this in Settings.ini
+ - My game keeps crashing on startup??
+   - Most common issues on vps's, they dont support games. you can easily fix startup crashes by changing your cpu settings. Go to this message for how to do it: [Message](https://discord.com/channels/1097271368896217108/1110484555581886594/1142995356871827489)
  ## FAQ 
  - How do i change the saved path?
    - Open Change Path.bat
