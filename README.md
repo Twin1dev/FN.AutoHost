@@ -1,5 +1,5 @@
 # FN.AutoHost
- Fortnite AutoHost for any gameserver and version!
+ Fortnite AutoHost for any gameserver and version! For any issues go to here: [issues](https://github.com/Twin1dev/FN.AutoHost#common-issues)
 
  ## Requirements
  - [Cobalt](https://github.com/Milxnor/Cobalt/tree/main) (MUST REMOVE ```#define SHOW_WINDOWS_CONSOLE``` IN SETTINGS.h!)
