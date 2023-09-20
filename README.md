@@ -4,6 +4,7 @@
  ## Requirements
  - [Cobalt](https://github.com/Milxnor/Cobalt/tree/main) (MUST REMOVE ```#define SHOW_WINDOWS_CONSOLE``` IN SETTINGS.h!)
  - [Gameserver](https://github.com/Milxnor/Project-Reboot-3.0) (Reboot V3 or anything else)
+ - Common knowlege on how to run a computer (apparently thats hard for alot of people that use this)
 
  ## Installation
 
