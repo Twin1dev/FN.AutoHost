@@ -1,6 +1,9 @@
 # FN.AutoHost
  Fortnite AutoHost for any gameserver and version! For any issues go to here: [issues](https://github.com/Twin1dev/FN.AutoHost#common-issues)
 
+ # NOTICE
+I will not support restarting on your gameserver, this is just a auto restarter for the CLIENT, you will have to add the restart functionality to your own gameserver.
+
  ## Requirements
  - [Cobalt](https://github.com/Milxnor/Cobalt/tree/main) (MUST REMOVE ```#define SHOW_WINDOWS_CONSOLE``` IN SETTINGS.h!)
  - [Gameserver](https://github.com/Milxnor/Project-Reboot-3.0) (Reboot V3 or anything else)
