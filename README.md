@@ -1,4 +1,5 @@
-# FN.AutoHost
+# FN.AutoHost.V2
+UPDATED GUI VERSION OF FN.AUTOHOST
  Fortnite AutoHost for any gameserver and version! For any issues go to here: [issues](https://github.com/Twin1dev/FN.AutoHost#common-issues)
 
  # NOTICE
