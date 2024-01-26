@@ -1,0 +1,15 @@
+﻿<Window x:Class="FN.AutoHost.V2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:FN.AutoHost.V2"
+        mc:Ignorable="d"
+        Title="FN.AutoHost.V2 by Twin1dev" Height="450" Width="800" Background="#FF0A0A0A" ResizeMode="CanMinimize" MinWidth="800" MaxWidth="800" MinHeight="450" MaxHeight="450">
+    <Grid>
+        <ui:Button Icon="Games24" Content="Start AutoHost" Margin="0,342,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Height="46" Width="136" Click="Button_Click"/>
+        <Label x:Name="LogLabel" Content="> Waiting for start..." HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top" Height="240" Width="596" Foreground="#8700FF6D"/>
+
+    </Grid>
+</Window>

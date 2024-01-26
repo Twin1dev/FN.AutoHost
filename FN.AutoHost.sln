@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.AutoHost", "FN.AutoHost\FN.AutoHost.csproj", "{E4B1FC15-4269-40B1-996C-B6294569ADC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FN.AutoHost.V2", "FN.AutoHost.V2\FN.AutoHost.V2.csproj", "{91422560-BD33-493D-886B-5C34B1514A21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E4B1FC15-4269-40B1-996C-B6294569ADC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4B1FC15-4269-40B1-996C-B6294569ADC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4B1FC15-4269-40B1-996C-B6294569ADC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91422560-BD33-493D-886B-5C34B1514A21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91422560-BD33-493D-886B-5C34B1514A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91422560-BD33-493D-886B-5C34B1514A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91422560-BD33-493D-886B-5C34B1514A21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
